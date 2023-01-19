@@ -58,40 +58,23 @@ function updateFilters() {
   
     // 8. Set the filtered data to the tableData.
     let filteredData = tableData;
-   // let date = d3.select("#datetime").property("value");
-    //let city = d3.select("#city").property("value");
+
      // 9. Loop through all of the filters and keep any data that
     // matches the filter values
-    //filters.forEach((dataRow) => {
-    //   if (filterId){
-    //    filteredData = filteredData.filter(row=> row.filterId = filterId)
 
 
 
 
-    Object.entries(filters).forEach(([key, value]) => {
+    Object.entries(filters).forEach(([key,value]) => {
       if (key) {
-        filteredData = filteredData.filter(row => row.key === value)
-      }
-      
+        let keyValue = d3.select(`#${key}`).property("value");
+        filteredData = filteredData.filter(row => row[key] === keyValue)
       console.log(key, value)
-    //if (key) {
-    //  filteredData = filteredData.filter(row => row.key === value);
-    //}
-  // });
+
+    };
+
   });
-    // need to do forEach on the filters. Object.entries (filters).forEach.
-    //filter on the key and the value to pass through
-  
-    //if (city) {
-    //  filteredData = filteredData.filter(row => row.city === city);
-    //console.log(filteredData)
-    //};
-    
-    //if (date) {
-    //  filteredData = filteredData.filter(row => row.datetime === date);
-    //console.log(filteredData)
-    //};
+
     // 10. Finally, rebuild the table using the filtered data
     buildTable(filteredData)
   };
