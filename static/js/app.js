@@ -42,6 +42,7 @@ function updateFilters() {
     // to the filters list. Otherwise, clear that filter from the filters object.
     if (changedValue) {
       filters[filterId] = changedValue;
+     
     }
     else {
       delete filters[filterId];
@@ -49,9 +50,9 @@ function updateFilters() {
     
     // 6. Call function to apply all filters and rebuild the table
     filterTable();
-  
+  console.log(filters)
   }
-  
+ 
   // 7. Use this function to filter the table when data is entered.
   function filterTable() {
   
@@ -64,19 +65,21 @@ function updateFilters() {
     //filters.forEach((dataRow) => {
     //   if (filterId){
     //    filteredData = filteredData.filter(row=> row.filterId = filterId)
-    //  } ;
-    Object.entries((filters) => {
-      filters.forEach((filterId) => {
 
-        if (filterId) {
-          filteredData.filteredData.filter(row => row.filterId === changedValue)
-        }
+
+
+
+    Object.entries(filters).forEach(([key, value]) => {
+      if (key) {
+        filteredData = filteredData.filter(row => row.key === value)
       }
-
-    )
+      
+      console.log(key, value)
+    //if (key) {
+    //  filteredData = filteredData.filter(row => row.key === value);
+    //}
+  // });
   });
-   
-    //});
     // need to do forEach on the filters. Object.entries (filters).forEach.
     //filter on the key and the value to pass through
   
